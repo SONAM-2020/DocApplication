@@ -10,7 +10,7 @@
                 <!-- Footer Widget -->
                 <div class="footer-widget footer-about">
                   <div class="footer-logo">
-                    <img src="assets/img/footer-logo.png" alt="logo">
+                    <img src="<?php echo base_url();?>Template/assets/img/footer-logo.png" alt="logo">
                   </div>
                   <div class="footer-about-content">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -139,6 +139,7 @@
        
      </div>
      <!-- /Main Wrapper -->
+   </div>
     
     <!-- jQuery -->
     <script src="<?php echo base_url();?>Template/assets/js/jquery.min.js"></script>
@@ -194,12 +195,26 @@ function loadforgotpassword(){
   $('#loginsection').hide();
   $('#forgotpass').show()
 }
+function loadpage(url){
+    $.blockUI
+        ({ 
+          css: 
+          { 
+              border: 'none', 
+              padding: '15px', 
+              backgroundColor: '#000', 
+              '-webkit-border-radius': '10px', 
+              '-moz-border-radius': '10px', 
+              opacity: .5, 
+              color: '#fff' 
+          } 
+        });
+      $("#mainpublicContent").load(url);
+      setTimeout($.unblockUI, 1000); 
+    }
 </script>
     
   </body>
-</html>
-
-</body>
 </html>
 
  
