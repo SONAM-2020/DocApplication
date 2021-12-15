@@ -19,7 +19,11 @@ class WebsiteController extends CI_Controller {
             $page_data['linktype']=$param1;
             $this->load->view('web/pages/DoctorRegister', $page_data);   
         }
-        
+        if($param1=="forgot-password"){
+            $page_data['linktype']=$param1;
+            $this->load->view('web/pages/forgot_password', $page_data);
+
+         }
     }
 }
 
