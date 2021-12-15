@@ -11,6 +11,15 @@ class WebsiteController extends CI_Controller {
             $page_data['linktype']=$param1;
             $this->load->view('web/pages/login', $page_data);   
         }
+        if($param1=="register"){
+            $page_data['linktype']=$param1;
+            $this->load->view('web/pages/register', $page_data);   
+        }
+        if($param1=="doctorregister"){
+            $page_data['linktype']=$param1;
+            $this->load->view('web/pages/DoctorRegister', $page_data);   
+        }
+        
     }
 }
 
