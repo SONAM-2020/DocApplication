@@ -25,5 +25,22 @@ class WebsiteController extends CI_Controller {
 
          }
     }
+    function PatientRegister(){
+        $page_data['message']="";
+        $page_data['messagefail']="";
+        $data['Name']=$this->input->post('name');
+        $data['Phone']=$this->input->post('phone');
+        $data['Password']=$this->input->post('password');
+         $data['Status']="Active";
+         $data['Role_Id']="2";
+        $this->CommonModel->do_insert('tbl_users', $data); 
+        if($this->db->affected_rows()>0){
+            $page_data['message']="Your Account Has Been Created Successfully.Thank you for using our system";
+        }
+        else{
+            $page_data['messagefail']='Your Created  is not able to submit. Please try again';
+        }
+        $this->load->view('web/acknowledgement', $page_data);
+    }
 }
 
