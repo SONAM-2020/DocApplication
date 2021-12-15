@@ -2,151 +2,686 @@
 <?php
   error_reporting(0);
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BTSS | Reporting</title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" href="<?php echo base_url();?>/uploads/logo/logo.png" type="image/x-icon" />  
-  <link rel="stylesheet" href="<?php echo base_url();?>assest/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assest/admin/bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assest/admin/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assest/admin/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assest/admin/plugins/iCheck/square/blue.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
-<body class="hold-transition login-page" style="background-image: url('<?php echo base_url();?>uploads/12.png');">
-<div class="login-box">
-  <div class="login-box-body">
-    <div id="loginsection">
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <img style="width: 100px; height: 100px; "  src="<?php echo base_url();?>/uploads/logo/logo.png" class="user-image" alt="User Image">
-      <br><br>
-      </div>
-      <br><br><br><br><br><br>
-      <h4 class="login-box-msg" style="color: black;">BHUTAN TELECOM SUPPORT SYSTEM (SCHEDULER)</h4>
-       <?php echo form_open('?adminController/login' , array('class' =>'form-horizontal','id' => 'loginform'));?>
-        <?php if($message!=''){?>
-          <div class="form-group has-feedback" id="mismatcherr" >
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
-                  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <h4><span class="text-danger"> <?php echo $message;?></span></h4>
-              </div>
-              </div>
-          </div>
-        <?php }?>
-          <span id="messagetodisplay"></span>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
-            <div class="col-xs-12 col-sm-1 col-md- 1col-lg-1"></div>
-            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-              <input type="email" name="email" onclick="remove_err('email_err')" id="email" class="form-control" placeholder="Email">
-              <span id="email_err" class="text-danger"></span>
-            </div>
-          </div> 
-          </div>
-          <br>
-          <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
-            <div class="col-xs-12 col-sm-1 col-md- 1col-lg-1"></div>
-            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-                <input type="password" id="password" onclick="remove_err('password_err')" name="password" class="form-control" placeholder="Password">
-                <span id="password_err" class="text-danger"></span>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-          <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-          </div>
-          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            <button type="button" onclick="login()" class="btn btn-primary btn-block btn-flat">Log In</button>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-             <a href="#" onclick="loadforgotpassword()">I forgot my password</a>
-          </div>
-         
-        </div>
-      </form>
-     
-    </div>
-    <div id="forgotpass" style="display: none">
-       <?php echo form_open('#' , array('class' =>'form-horizontal','id' => 'forgotpassword'));?>
-         <p class="login-box-msg">Forgot password</p>
-          <p><b>Note:</b>In order to reset your password, you need to know the email address which you are using as user name. System will generate random password and send to your email.</p>
-          <div class="form-group has-feedback">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <label>Your Registered email</label>
-              <input type="email" name="emailtoresetpassword" onclick="remove_err('emailtoresetpassword_err')" id="emailtoresetpassword" class="form-control" placeholder="Email">
-              <span id="emailtoresetpassword_err" class="text-danger"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <button type="button" onclick="getOtp()" class="btn btn-primary btn-block btn-flat">Get Password</button>
-            </div>
-          </div>
-       </form>
-    </div>
-  </div>
-</div>
-<script src="<?php echo base_url();?>assest/admin/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="<?php echo base_url();?>assest/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>assest/admin/plugins/iCheck/icheck.min.js"></script>
-<script src="<?php echo base_url();?>assest/JqueryAjaxFormSubmit.js"></script>
-<script src="<?php echo base_url();?>assest/jquery.form.js"></script>
-<script src="<?php echo base_url();?>assest/jquery-blockUI.js"></script>
-<script>
-function login(){
-  if(validate()){
-      $.blockUI
-      ({ 
-        css: 
-        { 
-              border: 'none', 
-              padding: '15px', 
-              backgroundColor: '#000', 
-              '-webkit-border-radius': '10px', 
-              '-moz-border-radius': '10px', 
-              opacity: .5, 
-              color: '#fff' 
-        } 
-      });
-     $('#loginform').submit();
-      setTimeout($.unblockUI, 600);
-  }
-}
-function validate(){
-  var retval=true;
-  if($('#email').val()==""){
-    $('#email_err').html('Please provide your email');
-    retval=false;
-  }
-  if($('#password').val()==""){
-     $('#password_err').html('Your password is required'); 
-     retval=false;
-  }
-  return retval;
-}
-function remove_err(err_Id){
-  $('#'+err_Id).html('');
-}
-function loadforgotpassword(){
-  $('#loginsection').hide();
-  $('#forgotpass').show()
-}
-</script>
-</body>
-</html>
+<?php
+  $this->load->view('web/include/header.php');
+?>
 
- 
+<body>
+    <div class="main-wrapper">
+      <header class="header">
+        <nav class="navbar navbar-expand-lg header-nav">
+          <div class="navbar-header">
+            <a id="mobile_btn" href="javascript:void(0);">
+              <span class="bar-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </a>
+            <a href="index-2.html" class="navbar-brand logo">
+              <img src="<?php echo base_url();?>Template/assets/img/logo.png" class="img-fluid" alt="Logo">
+            </a>
+          </div>
+          <div class="main-menu-wrapper">
+            <div class="menu-header">
+              <a href="index-2.html" class="menu-logo">
+                <img src="<?php echo base_url();?>Template/assets/img/logo.png" class="img-fluid" alt="Logo">
+              </a>
+              <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                <i class="fas fa-times"></i>
+              </a>
+            </div>
+            <ul class="main-nav">
+              <li class="active">
+                <a href="index-2.html">Home</a>
+              </li>
+              <li class="has-submenu">
+                <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu">
+                  <li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+                  <li><a href="appointments.html">Appointments</a></li>
+                  <li><a href="schedule-timings.html">Schedule Timing</a></li>
+                  <li><a href="my-patients.html">Patients List</a></li>
+                  <li><a href="patient-profile.html">Patients Profile</a></li>
+                  <li><a href="chat-doctor.html">Chat</a></li>
+                  <li><a href="invoices.html">Invoices</a></li>
+                  <li><a href="doctor-profile-settings.html">Profile Settings</a></li>
+                  <li><a href="reviews.html">Reviews</a></li>
+                  <li><a href="doctor-register.html">Doctor Register</a></li>
+                </ul>
+              </li> 
+              <li class="has-submenu">
+                <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu">
+                  <li><a href="search.html">Search Doctor</a></li>
+                  <li><a href="doctor-profile.html">Doctor Profile</a></li>
+                  <li><a href="booking.html">Booking</a></li>
+                  <li><a href="checkout.html">Checkout</a></li>
+                  <li><a href="booking-success.html">Booking Success</a></li>
+                  <li><a href="patient-dashboard.html">Patient Dashboard</a></li>
+                  <li><a href="favourites.html">Favourites</a></li>
+                  <li><a href="chat.html">Chat</a></li>
+                  <li><a href="profile-settings.html">Profile Settings</a></li>
+                  <li><a href="change-password.html">Change Password</a></li>
+                </ul>
+              </li> 
+              <li class="has-submenu">
+                <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu">
+                  <li><a href="voice-call.html">Voice Call</a></li>
+                  <li><a href="video-call.html">Video Call</a></li>
+                  <li><a href="search.html">Search Doctors</a></li>
+                  <li><a href="calendar.html">Calendar</a></li>
+                  <li><a href="components.html">Components</a></li>
+                  <li class="has-submenu">
+                    <a href="invoices.html">Invoices</a>
+                    <ul class="submenu">
+                      <li><a href="invoices.html">Invoices</a></li>
+                      <li><a href="invoice-view.html">Invoice View</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="blank-page.html">Starter Page</a></li>
+                  <li><a href="login.html">Login</a></li>
+                  <li><a href="register.html">Register</a></li>
+                  <li><a href="forgot-password.html">Forgot Password</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="admin/index.html" target="_blank">Admin</a>
+              </li>
+              <li class="login-link">
+                <a href="login.html">Login / Signup</a>
+              </li>
+            </ul>    
+          </div>     
+          <ul class="nav header-navbar-rht">
+            <li class="nav-item contact-item">
+              <div class="header-contact-img">
+                <i class="far fa-hospital"></i>             
+              </div>
+              <div class="header-contact-detail">
+                <p class="contact-header">Contact</p>
+                <p class="contact-info-header"> +1 315 369 5943</p>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link header-login" href="login.html">login / Signup </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <!-- /Header -->
+      
+      <!-- Home Banner -->
+      <section class="section section-search">
+        <div class="container-fluid">
+          <div class="banner-wrapper">
+            <div class="banner-header text-center">
+              <h1>Search Doctor, Make an Appointment</h1>
+              <p>Discover the best doctors, clinic & hospital the city nearest to you.</p>
+            </div>
+                         
+            <!-- Search -->
+            <div class="search-box">
+              <form action="templateshub.net">
+                <div class="form-group search-location">
+                  <input type="text" class="form-control" placeholder="Search Location">
+                  <span class="form-text">Based on your Location</span>
+                </div>
+                <div class="form-group search-info">
+                  <input type="text" class="form-control" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
+                  <span class="form-text">Ex : Dental or Sugar Check up etc</span>
+                </div>
+                <button type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i> <span>Search</span></button>
+              </form>
+            </div>
+            <!-- /Search -->
+            
+          </div>
+        </div>
+      </section>
+      <!-- /Home Banner -->
+        
+      <!-- Clinic and Specialities -->
+      <section class="section section-specialities">
+        <div class="container-fluid">
+          <div class="section-header text-center">
+            <h2>Clinic and Specialities</h2>
+            <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-9">
+              <!-- Slider -->
+              <div class="specialities-slider slider">
+              
+                <!-- Slider Item -->
+                <div class="speicality-item text-center">
+                  <div class="speicality-img">
+                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-01.png" class="img-fluid" alt="Speciality">
+                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                  </div>
+                  <p>Urology</p>
+                </div>  
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="speicality-item text-center">
+                  <div class="speicality-img">
+                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-02.png" class="img-fluid" alt="Speciality">
+                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                  </div>
+                  <p>Neurology</p>  
+                </div>              
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="speicality-item text-center">
+                  <div class="speicality-img">
+                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">
+                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                  </div>  
+                  <p>Orthopedic</p> 
+                </div>              
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="speicality-item text-center">
+                  <div class="speicality-img">
+                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-04.png" class="img-fluid" alt="Speciality">
+                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                  </div>  
+                  <p>Cardiologist</p> 
+                </div>              
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="speicality-item text-center">
+                  <div class="speicality-img">
+                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">
+                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                  </div>  
+                  <p>Dentist</p>
+                </div>              
+                <!-- /Slider Item -->
+                
+              </div>
+              <!-- /Slider -->
+              
+            </div>
+          </div>
+        </div>   
+      </section>   
+      <!-- Clinic and Specialities -->
+      
+      <!-- Popular Section -->
+      <section class="section section-doctor">
+        <div class="container-fluid">
+           <div class="row">
+            <div class="col-lg-4">
+              <div class="section-header ">
+                <h2>Book Our Doctor</h2>
+                <p>Lorem Ipsum is simply dummy text </p>
+              </div>
+              <div class="about-content">
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
+                <p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>         
+                <a href="javascript:;">Read More..</a>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="doctor-slider slider">
+              
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="<?php echo base_url();?>Template/assets/img/doctors/doctor-01.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Ruby Perrin</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <span class="d-inline-block average-rating">(17)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> Florida, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $300 - $1000 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Doctor Widget -->
+            
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="<?php echo base_url();?>Template/assets/img/doctors/doctor-02.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Darren Elder</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span class="d-inline-block average-rating">(35)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> Newyork, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $50 - $300 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Doctor Widget -->
+            
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="<?php echo base_url();?>Template/assets/img/doctors/doctor-03.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Deborah Angel</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span class="d-inline-block average-rating">(27)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> Georgia, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $100 - $400 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Doctor Widget -->
+            
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="<?php echo base_url();?>Template/assets/img/doctors/doctor-04.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Sofia Brient</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span class="d-inline-block average-rating">(4)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> Louisiana, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $150 - $250 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Doctor Widget -->
+                
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Marvin Campbell</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span class="d-inline-block average-rating">(66)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> Michigan, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $50 - $700 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Doctor Widget -->
+                
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Katharine Berthold</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span class="d-inline-block average-rating">(52)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> Texas, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $100 - $500 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Doctor Widget -->
+                
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Linda Tobin</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span class="d-inline-block average-rating">(43)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> Kansas, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $100 - $1000 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Doctor Widget -->
+                
+                <!-- Doctor Widget -->
+                <div class="profile-widget">
+                  <div class="doc-img">
+                    <a href="doctor-profile.html">
+                      <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                      <i class="far fa-bookmark"></i>
+                    </a>
+                  </div>
+                  <div class="pro-content">
+                    <h3 class="title">
+                      <a href="doctor-profile.html">Paul Richard</a> 
+                      <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">MBBS, MD - Dermatology , Venereology & Lepros</p>
+                    <div class="rating">
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star filled"></i>
+                      <i class="fas fa-star"></i>
+                      <span class="d-inline-block average-rating">(49)</span>
+                    </div>
+                    <ul class="available-info">
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> California, USA
+                      </li>
+                      <li>
+                        <i class="far fa-clock"></i> Available on Fri, 22 Mar
+                      </li>
+                      <li>
+                        <i class="far fa-money-bill-alt"></i> $100 - $400 
+                        <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                      </li>
+                    </ul>
+                    <div class="row row-sm">
+                      <div class="col-6">
+                        <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+                      </div>
+                      <div class="col-6">
+                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Doctor Widget -->
+                
+              </div>
+            </div>
+           </div>
+        </div>
+      </section>
+      <!-- /Popular Section -->
+       
+       <!-- Availabe Features -->
+       <section class="section section-features">
+        <div class="container-fluid">
+           <div class="row">
+            <div class="col-md-5 features-img">
+              <img src="<?php echo base_url();?>Template/assets/img/features/feature.png" class="img-fluid" alt="Feature">
+            </div>
+            <div class="col-md-7">
+              <div class="section-header">  
+                <h2 class="mt-2">Availabe Features in Our Clinic</h2>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+              </div>  
+              <div class="features-slider slider">
+                <!-- Slider Item -->
+                <div class="feature-item text-center">
+                  <img src="<?php echo base_url();?>Template/assets/img/features/feature-01.jpg" class="img-fluid" alt="Feature">
+                  <p>Patient Ward</p>
+                </div>
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="feature-item text-center">
+                  <img src="<?php echo base_url();?>Template/assets/img/features/feature-02.jpg" class="img-fluid" alt="Feature">
+                  <p>Test Room</p>
+                </div>
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="feature-item text-center">
+                  <img src="<?php echo base_url();?>Template/assets/img/features/feature-03.jpg" class="img-fluid" alt="Feature">
+                  <p>ICU</p>
+                </div>
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="feature-item text-center">
+                  <img src="<?php echo base_url();?>Template/assets/img/features/feature-04.jpg" class="img-fluid" alt="Feature">
+                  <p>Laboratory</p>
+                </div>
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="feature-item text-center">
+                  <img src="<?php echo base_url();?>Template/assets/img/features/feature-05.jpg" class="img-fluid" alt="Feature">
+                  <p>Operation</p>
+                </div>
+                <!-- /Slider Item -->
+                
+                <!-- Slider Item -->
+                <div class="feature-item text-center">
+                  <img src="<?php echo base_url();?>Template/assets/img/features/feature-06.jpg" class="img-fluid" alt="Feature">
+                  <p>Medical</p>
+                </div>
+                <!-- /Slider Item -->
+              </div>
+            </div>
+           </div>
+        </div>
+      </section>
+      <?php
+  $this->load->view('web/include/footer.php');
+?>
+
