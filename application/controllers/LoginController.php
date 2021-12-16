@@ -51,7 +51,7 @@ class loginController extends CI_Controller {
             redirect(base_url(), 'refresh');
         }
         else{
-            $this->load->view('admin/dashboard', $page_data);
+            $this->load->view('patient_dashboard/dashboard', $page_data);
         }
     }
     function logout($param=''){  
