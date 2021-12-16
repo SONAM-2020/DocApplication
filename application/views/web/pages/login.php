@@ -2,20 +2,15 @@
   $this->load->view('web/include/header.php');
 ?>
 <body class="account-page"> 
-
-	<!-- Main Wrapper -->
+	<div id="mainpublicContent">
 	<div class="main-wrapper">
-	
-		  <?php
+<?php
   $this->load->view('web/include/nav.php');
 ?>
 		<div class="content">
 			<div class="container-fluid">
-				
 				<div class="row">
 					<div class="col-md-8 offset-md-2">
-						
-						<!-- Login Tab Content -->
 						<div class="account-content">
 							<div class="row align-items-center justify-content-center">
 								<div class="col-md-7 col-lg-6 login-left">
@@ -23,21 +18,23 @@
 								</div>
 								<div class="col-md-12 col-lg-6 login-right">
 									<div class="login-header">
-										<h3>Login <span>Doccure</span></h3>
+										<h3>Login<span>Doccure</span></h3>
 									</div>
-									<form action="https://dreamguys.co.in/demo/doccure/index.html">
+									 <?php echo form_open('?loginController/login' , array('class' =>'form-horizontal','id' => 'loginform'));?>
 										<div class="form-group form-focus">
-											<input type="email" class="form-control floating">
-											<label class="focus-label">Email</label>
-										</div>
-										<div class="form-group form-focus">
-											<input type="password" class="form-control floating">
-											<label class="focus-label">Password</label>
-										</div>
+												<input type="text" class="form-control floating" name="phone" id="phone" onchange="remove_err('Phone_err')">
+												<label class="focus-label">Mobile Number<span class="text-danger">*</span></label>
+												<span id="phone_err" class="text-danger"></span>
+											</div>
+											<div class="form-group form-focus">
+												<input type="password" class="form-control floating" name="password" id="password" onchange="remove_err('password_err')">
+												<label class="focus-label">Password<span class="text-danger">*</span></label>
+												<span id="password_err" class="text-danger"></span>
+											</div>
 										<div class="text-right">
 											<a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
 										</div>
-										<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Login</button>
+										<button class="btn btn-primary btn-block btn-lg login-btn" type="button" onclick="login()">Login</button>
 										<div class="login-or">
 											<span class="or-line"></span>
 											<span class="span-or">or</span>
@@ -55,14 +52,64 @@
 								</div>
 							</div>
 						</div>
-						<!-- /Login Tab Content -->
-							
 					</div>
 				</div>
-
 			</div>
-
-		</div>		
-		<?php
+		</div>
+		<script>
+function login(){
+  if(validate()){
+      $.blockUI
+      ({ 
+        css: 
+        { 
+              border: 'none', 
+              padding: '15px', 
+              backgroundColor: '#000', 
+              '-webkit-border-radius': '10px', 
+              '-moz-border-radius': '10px', 
+              opacity: .5, 
+              color: '#fff' 
+        } 
+      });
+     $('#loginform').submit();
+      setTimeout($.unblockUI, 600);
+  }
+}
+function validate(){
+  var retval=true;
+  if($('#phone').val()==""){
+    $('#Phone_err').html('Please provide your phone Number');
+    retval=false;
+  }
+  if($('#password').val()==""){
+     $('#password_err').html('Your password is required'); 
+     retval=false;
+  }
+  return retval;
+}
+function remove_err(err_Id){
+  $('#'+err_Id).html('');
+}
+function reset(){
+      $.blockUI
+      ({ 
+        css: 
+        { 
+              border: 'none', 
+              padding: '15px', 
+              backgroundColor: '#000', 
+              '-webkit-border-radius': '10px', 
+              '-moz-border-radius': '10px', 
+              opacity: .5, 
+              color: '#fff' 
+        } 
+      });
+      var url='<?php echo base_url();?>index.php?baseController/loadpage/resetpassword';
+    $("#mainpublicContent").load(url);
+      setTimeout($.unblockUI, 1000); 
+  }
+</script>		
+<?php
   $this->load->view('web/include/footer.php');
 ?>	

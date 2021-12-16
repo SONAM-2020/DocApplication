@@ -26,7 +26,7 @@ class WebsiteController extends CI_Controller {
         $page_data['messagefail']="";
         $data['Name']=$this->input->post('name');
         $data['Phone']=$this->input->post('phone');
-        $data['Password']=$this->input->post('password');
+        $data['Password']=password_hash($this->input->post('password'), PASSWORD_BCRYPT);
          $data['Status']="Active";
          $data['Role_Id']="2";
         $this->CommonModel->do_insert('tbl_users', $data); 

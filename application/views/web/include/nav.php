@@ -8,13 +8,13 @@
                 <span></span>
               </span>
             </a>
-            <a href="index-2.html" class="navbar-brand logo">
+            <a href="<?php echo base_url();?>" class="navbar-brand logo">
               <img src="<?php echo base_url();?>Template/assets/img/logo.png" class="img-fluid" alt="Logo">
             </a>
           </div>
           <div class="main-menu-wrapper">
             <div class="menu-header">
-              <a href="index-2.html" class="menu-logo">
+              <a href="<?php echo base_url();?>" class="menu-logo">
                 <img src="<?php echo base_url();?>Template/assets/img/logo.png" class="img-fluid" alt="Logo">
               </a>
               <a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -23,7 +23,7 @@
             </div>
             <ul class="main-nav">
               <li class="active">
-                <a href="index-2.html">Home</a>
+                <a href="<?php echo base_url();?>">Home</a>
               </li>
               <li class="has-submenu">
                 <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
