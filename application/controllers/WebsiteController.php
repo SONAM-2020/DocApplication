@@ -38,9 +38,27 @@ class WebsiteController extends CI_Controller {
             $page_data['message']="Your Account Has Been Created Successfully.Thank you for using our system";
         }
         else{
-            $page_data['messagefail']='Your Created  is not able to submit. Please try again';
+            $page_data['messagefail']='Your Created account is not able to submit. Please try again';
         }
         $this->load->view('web/acknowledgement', $page_data);
+    }
+    function DoctorRegister(){
+        $page_data['messege'] = "";
+        $page_data['messegefail'] = "";
+        $data['Name'] = $this -> input -> post('name');
+        $data['Phone'] = $this -> input -> post('phone');
+        $data['Password'] = password_hash($this -> input -> post('password'), PASSWORD_BCRYPT);
+        $data['Status'] = "Active";
+        $data['Role_Id'] = "3";
+        $this ->CommonModel ->do_insert('tbl_users', $data);
+        if($this->db->affected_rows()>0){
+            $page_data['message'] = "Your account Has Been Created Successfully";
+        }
+        else{
+            $page_data['messagefail'] = 'The account cannot be created, Please try again ';
+        }
+        $this ->load -> view('web/acknowledgement',$page_data);
+
     }
 }
 

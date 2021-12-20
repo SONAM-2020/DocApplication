@@ -140,7 +140,7 @@
 																	<td>
 																		<h2 class="table-avatar">
 																			<a href="doctor-profile.html" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="<?php echo base_url();?>Template/assets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
+																				<img class="avatar-img rounded-circle" src="<?php echo base_url();?>Template/Oassets/img/doctors/doctor-thumb-10.jpg" alt="User Image">
 																			</a>
 																			<a href="doctor-profile.html">Dr. Olga Barlow  <span>Dental</span></a>
 																		</h2>
