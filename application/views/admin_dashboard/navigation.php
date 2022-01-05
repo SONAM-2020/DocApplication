@@ -1,130 +1,229 @@
 <body>
-
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
+    <div id="mainpublicContent">
+        <div class="main-wrapper">
     
       <!-- Header -->
-      <header class="header">
-        <nav class="navbar navbar-expand-lg header-nav">
-          <div class="navbar-header">
-            <a id="mobile_btn" href="javascript:void(0);">
-              <span class="bar-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
+            <div class="header">
+      
+        <!-- Logo -->
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+            <img src="<?php echo base_url();?>Template/admin/assets/img/logo.png" alt="Logo">
+          </a>
+          <a href="index.html" class="logo logo-small">
+            <img src="<?php echo base_url();?>Template/admin/assets/img/logo-small.png" alt="Logo" width="30" height="30">
+          </a>
+                </div>
+        <!-- /Logo -->
+        
+        <a href="javascript:void(0);" id="toggle_btn">
+          <i class="fe fe-text-align-left"></i>
+        </a>
+        
+        <div class="top-nav-search">
+          <form>
+            <input type="text" class="form-control" placeholder="Search here">
+            <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <a class="mobile_btn" id="mobile_btn">
+          <i class="fa fa-bars"></i>
+        </a>
+        <!-- /Mobile Menu Toggle -->
+        
+        <!-- Header Right Menu -->
+        <ul class="nav user-menu">
+
+          <!-- Notifications -->
+          <li class="nav-item dropdown noti-dropdown">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
             </a>
-            <a href="index-2.html" class="navbar-brand logo">
-              <img src="<?php echo base_url();?>Template/assets/img/logo.png" class="img-fluid" alt="Logo">
-            </a>
-          </div>
-          <div class="main-menu-wrapper">
-            <div class="menu-header">
-              <a href="index-2.html" class="menu-logo">
-                <img src="<?php echo base_url();?>Template/assets/img/logo.png" class="img-fluid" alt="Logo">
-              </a>
-              <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                <i class="fas fa-times"></i>
-              </a>
+            <div class="dropdown-menu notifications">
+              <div class="topnav-dropdown-header">
+                <span class="notification-title">Notifications</span>
+                <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+              </div>
+              <div class="noti-content">
+                <ul class="notification-list">
+                  <li class="notification-message">
+                    <a href="#">
+                      <div class="media">
+                        <span class="avatar avatar-sm">
+                          <img class="avatar-img rounded-circle" alt="User Image" src="<?php echo base_url();?>Template/admin/assets/img/doctors/doctor-thumb-01.jpg">
+                        </span>
+                        <div class="media-body">
+                          <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
+                          <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="notification-message">
+                    <a href="#">
+                      <div class="media">
+                        <span class="avatar avatar-sm">
+                          <img class="avatar-img rounded-circle" alt="User Image" src="<?php echo base_url();?>Template/admin/assets/img/patients/patient1.jpg">
+                        </span>
+                        <div class="media-body">
+                          <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
+                          <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                 
+                </ul>
+              </div>
+              <div class="topnav-dropdown-footer">
+                <a href="#">View all Notifications</a>
+              </div>
             </div>
-            <ul class="main-nav">
-              <li>
-                <a href="index-2.html">Home</a>
+          </li>
+          <!-- /Notifications -->
+          
+          <!-- User Menu -->
+          <li class="nav-item dropdown has-arrow">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <span class="user-img"><img class="rounded-circle" src="<?php echo base_url();?>Template/admin/assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
+            </a>
+            <div class="dropdown-menu">
+              <div class="user-header">
+                <div class="avatar avatar-sm">
+                  <img src="<?php echo base_url();?>Template/admin/assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                </div>
+                <div class="user-text">
+                  <h6>Ryan Taylor</h6>
+                  <p class="text-muted mb-0">Administrator</p>
+                </div>
+              </div>
+              <a class="dropdown-item" href="profile.html">My Profile</a>
+              <a class="dropdown-item" href="settings.html">Settings</a>
+              <a class="dropdown-item" href="login.html">Logout</a>
+            </div>
+          </li>
+          <!-- /User Menu -->
+          
+        </ul>
+        <!-- /Header Right Menu -->
+        
+            </div>
+      <!-- /Header -->
+      
+      <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+          <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+              <li class="menu-title"> 
+                <span>Main</span>
               </li>
-              <li class="has-submenu">
-                <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
-                <ul class="submenu">
-                  <li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
-                  <li><a href="appointments.html">Appointments</a></li>
-                  <li><a href="schedule-timings.html">Schedule Timing</a></li>
-                  <li><a href="my-patients.html">Patients List</a></li>
-                  <li><a href="patient-profile.html">Patients Profile</a></li>
-                  <li><a href="chat-doctor.html">Chat</a></li>
-                  <li><a href="invoices.html">Invoices</a></li>
-                  <li><a href="doctor-profile-settings.html">Profile Settings</a></li>
-                  <li><a href="reviews.html">Reviews</a></li>
-                  <li><a href="doctor-register.html">Doctor Register</a></li>
+              <li class="active"> 
+                <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+              </li>
+              <li> 
+                <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadpage/appointment/')"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+              </li>
+              <li> 
+                <a href="#"onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadpage/specialities/')"><i class="fe fe-users"></i> <span>Specialities</span></a>
+              </li>
+              <li> 
+                <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadpage/doctor/')"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
+              </li>
+              <li> 
+                <a href="#"onclick="loadpage('<?php echo base_url();?>index.php?adminController/loadpage/patient/')"><i class="fe fe-user"></i> <span>Patients</span></a>
+              </li>
+              <li> 
+                <a href="reviews.html"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
+              </li>
+              <li> 
+                <a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Transactions</span></a>
+              </li>
+              <li> 
+                <a href="settings.html"><i class="fe fe-vector"></i> <span>Settings</span></a>
+              </li>
+              <li class="submenu">
+                <a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
+                <ul style="display: none;">
+                  <li><a href="invoice-report.html">Invoice Reports</a></li>
                 </ul>
-              </li> 
-              <li class="has-submenu active">
-                <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
-                <ul class="submenu">
-                  <li><a href="search.html">Search Doctor</a></li>
-                  <li><a href="doctor-profile.html">Doctor Profile</a></li>
-                  <li><a href="booking.html">Booking</a></li>
-                  <li><a href="checkout.html">Checkout</a></li>
-                  <li><a href="booking-success.html">Booking Success</a></li>
-                  <li class="active"><a href="patient-dashboard.html">Patient Dashboard</a></li>
-                  <li><a href="favourites.html">Favourites</a></li>
-                  <li><a href="chat.html">Chat</a></li>
-                  <li><a href="profile-settings.html">Profile Settings</a></li>
-                  <li><a href="change-password.html">Change Password</a></li>
+              </li>
+              <li class="menu-title"> 
+                <span>Pages</span>
+              </li>
+              <li> 
+                <a href="profile.html"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
+              </li>
+              <li class="submenu">
+                <a href="#"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+                <ul style="display: none;">
+                  <li><a href="login.html"> Login </a></li>
+                  <li><a href="register.html"> Register </a></li>
+                  <li><a href="forgot-password.html"> Forgot Password </a></li>
+                  <li><a href="lock-screen.html"> Lock Screen </a></li>
                 </ul>
-              </li> 
-              <li class="has-submenu">
-                <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
-                <ul class="submenu">
-                  <li><a href="voice-call.html">Voice Call</a></li>
-                  <li><a href="video-call.html">Video Call</a></li>
-                  <li><a href="search.html">Search Doctors</a></li>
-                  <li><a href="calendar.html">Calendar</a></li>
-                  <li><a href="components.html">Components</a></li>
-                  <li class="has-submenu">
-                    <a href="invoices.html">Invoices</a>
-                    <ul class="submenu">
-                      <li><a href="invoices.html">Invoices</a></li>
-                      <li><a href="invoice-view.html">Invoice View</a></li>
+              </li>
+              <li class="submenu">
+                <a href="#"><i class="fe fe-warning"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
+                <ul style="display: none;">
+                  <li><a href="error-404.html">404 Error </a></li>
+                  <li><a href="error-500.html">500 Error </a></li>
+                </ul>
+              </li>
+              <li> 
+                <a href="blank-page.html"><i class="fe fe-file"></i> <span>Blank Page</span></a>
+              </li>
+              <li class="menu-title"> 
+                <span>UI Interface</span>
+              </li>
+              <li> 
+                <a href="components.html"><i class="fe fe-vector"></i> <span>Components</span></a>
+              </li>
+              <li class="submenu">
+                <a href="#"><i class="fe fe-layout"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
+                <ul style="display: none;">
+                  <li><a href="form-basic-inputs.html">Basic Inputs </a></li>
+                  <li><a href="form-input-groups.html">Input Groups </a></li>
+                  <li><a href="form-horizontal.html">Horizontal Form </a></li>
+                  <li><a href="form-vertical.html"> Vertical Form </a></li>
+                  <li><a href="form-mask.html"> Form Mask </a></li>
+                  <li><a href="form-validation.html"> Form Validation </a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="#"><i class="fe fe-table"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+                <ul style="display: none;">
+                  <li><a href="tables-basic.html">Basic Tables </a></li>
+                  <li><a href="data-tables.html">Data Table </a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="javascript:void(0);"><i class="fe fe-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
+                <ul style="display: none;">
+                  <li class="submenu">
+                    <a href="javascript:void(0);"> <span>Level 1</span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                      <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
+                      <li class="submenu">
+                        <a href="javascript:void(0);"> <span> Level 2</span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                          <li><a href="javascript:void(0);">Level 3</a></li>
+                          <li><a href="javascript:void(0);">Level 3</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
                     </ul>
                   </li>
-                  <li><a href="blank-page.html">Starter Page</a></li>
-                  <li><a href="login.html">Login</a></li>
-                  <li><a href="register.html">Register</a></li>
-                  <li><a href="forgot-password.html">Forgot Password</a></li>
+                  <li>
+                    <a href="javascript:void(0);"> <span>Level 1</span></a>
+                  </li>
                 </ul>
               </li>
-              <li>
-                <a href="admin/index.html" target="_blank">Admin</a>
-              </li>
-              <li class="login-link">
-                <a href="login.html">Login / Signup</a>
-              </li>
             </ul>
-          </div>     
-          <ul class="nav header-navbar-rht">
-            <li class="nav-item contact-item">
-              <div class="header-contact-img">
-                <i class="far fa-hospital"></i>             
-              </div>
-              <div class="header-contact-detail">
-                <p class="contact-header">Contact</p>
-                <p class="contact-info-header"> +1 315 369 5943</p>
-              </div>
-            </li>
-            
-            <!-- User Menu -->
-            <li class="nav-item dropdown has-arrow logged-item">
-              <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                <span class="user-img">
-                  <img class="rounded-circle" src="<?php echo base_url();?>Template/assets/img/patients/patient.jpg" width="31" alt="Ryan Taylor">
-                </span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <div class="user-header">
-                  <div class="avatar avatar-sm">
-                    <img src="<?php echo base_url();?>Template/assets/img/patients/patient.jpg" alt="User Image" class="avatar-img rounded-circle">
-                  </div>
-                  <div class="user-text">
-                    <h6>Richard Wilson</h6>
-                    <p class="text-muted mb-0">Patient</p>
-                  </div>
+          </div>
                 </div>
-                <a class="dropdown-item" href="patient-dashboard.html">Dashboard</a>
-                <a class="dropdown-item" href="profile-settings.html">Profile Settings</a>
-                <a class="dropdown-item" href="login.html">Logout</a>
-              </div>
-            </li>
-            <!-- /User Menu -->
-            
-          </ul>
-        </nav>
-      </header>
+            </div>
+      <!-- /Sidebar -->
+    
