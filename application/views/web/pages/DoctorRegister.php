@@ -29,7 +29,7 @@
 							</div>
 							
 							<!-- Register Form -->
-							<form action="https://dreamguys.co.in/demo/doccure/doctor-dashboard.html">
+						<?php echo form_open('#' , array('class' => 'form-horizontal validatable', 'enctype' => 'multipart/form-data','id'=>'pform'));?>
 								<div class="form-group form-focus">
 									<input type="text" class="form-control floating">
 									<label class="focus-label">Name</label>

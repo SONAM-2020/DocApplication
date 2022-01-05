@@ -25,7 +25,7 @@
 											<h3>Patient Register <a href="#" onclick="loadpage('<?php echo base_url();?>index.php?websiteController/loadpage/doctorregister')">Are you a Doctor?</a></h3>
 										</div>
 										 <?php echo form_open('#' , array('class' => 'form-horizontal validatable', 'enctype' => 'multipart/form-data','id'=>'pform'));?>
-											<div class="form-group form-focus">
+											<div class="form-group form-focus"> 
 												<input type="text" class="form-control floating" name="name" id="name" onchange="remove_err('name_err')">
 												<label class="focus-label">Name<span class="text-danger">*</span></label>
 												<span id="name_err" class="text-danger"></span>
