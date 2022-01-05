@@ -21,13 +21,32 @@ class loginController extends CI_Controller {
                          $this->load->view('web/acknowledgement', $page_data); 
                     }
                     else{
+                        if($row['Role_Id']=="2"){
                         $this->session->set_userdata('User_Id', $row['Id']);
                         //$this->session->set_userdata('Image', $row['Image']);
                         $this->session->set_userdata('Name', $row['Name']);
                         $this->session->set_userdata('Phone', $row['Phone']);
                         //$this->session->set_userdata('Contact_No', $row['Contact_No']);
                         $this->session->set_userdata('Role_Id', $row['Role_Id']);
-                        redirect(base_url() . 'index.php?loginController/dashboard', 'refresh');
+                        redirect(base_url() . 'index.php?loginController/patient_dashboard', 'refresh');
+                        }elseif ($row['Role_Id']=="3") {
+                             $this->session->set_userdata('User_Id', $row['Id']);
+                        //$this->session->set_userdata('Image', $row['Image']);
+                        $this->session->set_userdata('Name', $row['Name']);
+                        $this->session->set_userdata('Phone', $row['Phone']);
+                        //$this->session->set_userdata('Contact_No', $row['Contact_No']);
+                        $this->session->set_userdata('Role_Id', $row['Role_Id']);
+                        redirect(base_url() . 'index.php?loginController/doctor_dashboard', 'refresh');
+                         
+                        }else{
+                             $this->session->set_userdata('User_Id', $row['Id']);
+                        //$this->session->set_userdata('Image', $row['Image']);
+                        $this->session->set_userdata('Name', $row['Name']);
+                        $this->session->set_userdata('Phone', $row['Phone']);
+                        //$this->session->set_userdata('Contact_No', $row['Contact_No']);
+                        $this->session->set_userdata('Role_Id', $row['Role_Id']);
+                        redirect(base_url() . 'index.php?loginController/admin_dashboard', 'refresh');
+                        }
                     }  
                 }
                 else{
@@ -45,13 +64,31 @@ class loginController extends CI_Controller {
                 $this->load->view('web/acknowledgement', $page_data); 
         }
     }
-    function dashboard($param=""){
+    function patient_dashboard($param=""){
         $page_data['message']="";
         if ($this->session->userdata('User_Id') == null ){
             redirect(base_url(), 'refresh');
         }
         else{
             $this->load->view('patient_dashboard/dashboard', $page_data);
+        }
+    }
+    function doctor_dashboard($param=""){
+        $page_data['message']="";
+        if ($this->session->userdata('User_Id') == null ){
+            redirect(base_url(), 'refresh');
+        }
+        else{
+            $this->load->view('doctor_dashboard/dashboard', $page_data);
+        }
+    }
+    function admin_dashboard($param=""){
+        $page_data['message']="";
+        if ($this->session->userdata('User_Id') == null ){
+            redirect(base_url(), 'refresh');
+        }
+        else{
+            $this->load->view('admin_dashboard/dashboard', $page_data);
         }
     }
     function logout($param=''){  
