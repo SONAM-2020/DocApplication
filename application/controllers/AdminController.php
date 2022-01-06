@@ -7,7 +7,9 @@ class AdminController extends CI_Controller {
     function loadpage($param1="",$param2="",$param3=""){
         $page_data['formSubmit']="";
         if($param1=="doctor"){
-            $this->load->view('admin_dashboard/pages/doctor_list');
+            $query="SELECT  * FROM tbl_users WHERE  Role_Id='3'";
+            $page_data['t_doctor_list'] = $this->db->query($query)->result_array(); 
+            $this->load->view('admin_dashboard/pages/doctor_list',$page_data);
         }
         if($param1=="appointment"){
             $this->load->view('admin_dashboard/pages/appointment_list');
