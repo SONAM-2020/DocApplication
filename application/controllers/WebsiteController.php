@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class WebsiteController extends CI_Controller { 
 	public function index(){
-	$this->load->view('web/Index');
+        $query="SELECT  * FROM tbl_users WHERE  Role_Id='3'";
+            $page_data['t_doctor_list'] = $this->db->query($query)->result_array(); 
+	$this->load->view('web/Index',$page_data);
 	}
 
 	function loadpage($param1="",$param2=""){
