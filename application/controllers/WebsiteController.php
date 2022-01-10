@@ -5,6 +5,7 @@ class WebsiteController extends CI_Controller {
 	public function index(){
         $query="SELECT  * FROM tbl_users WHERE  Role_Id='3'";
             $page_data['t_doctor_list'] = $this->db->query($query)->result_array(); 
+            $page_data['specialities_list']=$this->db->get_where('tbl_specialities',array('Status'=>'Active'))->result_array();
 	$this->load->view('web/Index',$page_data);
 	}
 

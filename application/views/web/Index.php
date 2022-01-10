@@ -55,60 +55,15 @@
             <div class="col-md-9">
               <!-- Slider -->
               <div class="specialities-slider slider">
-              
-                <!-- Slider Item -->
+              <?php foreach($specialities_list as $i=> $event): ?>
                 <div class="speicality-item text-center">
                   <div class="speicality-img">
                     <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-01.png" class="img-fluid" alt="Speciality">
                     <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                   </div>
-                  <p>Urology</p>
+                  <p><?php echo $event['Specialities'];?></p>
                 </div>  
-                <!-- /Slider Item -->
-                
-                <!-- Slider Item -->
-                <div class="speicality-item text-center">
-                  <div class="speicality-img">
-                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-02.png" class="img-fluid" alt="Speciality">
-                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                  </div>
-                  <p>Neurology</p>  
-                </div>              
-                <!-- /Slider Item -->
-                
-                <!-- Slider Item -->
-                <div class="speicality-item text-center">
-                  <div class="speicality-img">
-                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">
-                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                  </div>  
-                  <p>Orthopedic</p> 
-                </div>              
-                <!-- /Slider Item -->
-                
-                <!-- Slider Item -->
-                <div class="speicality-item text-center">
-                  <div class="speicality-img">
-                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-04.png" class="img-fluid" alt="Speciality">
-                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                  </div>  
-                  <p>Cardiologist</p> 
-                </div>              
-                <!-- /Slider Item -->
-                
-                <!-- Slider Item -->
-                <div class="speicality-item text-center">
-                  <div class="speicality-img">
-                    <img src="<?php echo base_url();?>Template/assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">
-                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                  </div>  
-                  <p>Dentist</p>
-                </div>              
-                <!-- /Slider Item -->
-                
-              </div>
-              <!-- /Slider -->
-              
+                 <?php endforeach;?>
             </div>
           </div>
         </div>   
