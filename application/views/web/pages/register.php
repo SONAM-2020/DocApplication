@@ -32,7 +32,7 @@
 											</div>
 											<div class="form-group form-focus">
 												<input type="text" class="form-control floating" name="phone" id="phone" onchange="remove_err('Phone_err')">
-												<label class="focus-label">Mobile Number<span class="text-danger">*</span></label>
+												<label class="focus-label">Email Address<span class="text-danger">*</span></label>
 												<span id="phone_err" class="text-danger"></span>
 											</div>
 											<div class="form-group form-focus">
@@ -99,8 +99,8 @@
         $('#password').focus();
         returnt=false;
       }
-      if($('#phone').val()=="" || $('#phone').val().length!=8){
-        $('#phone_err').html('Please Mention Your 8 digit Phone Number');
+      if($('#phone').val()==""){
+        $('#phone_err').html('Please Mention Your Email Address');
         $('#phone').focus();
         returnt=false;
       }

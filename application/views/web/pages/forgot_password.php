@@ -32,7 +32,7 @@
 										<form action="https://dreamguys.co.in/demo/doccure/index.html">
 											<div class="form-group form-focus">
 												<input type="email" class="form-control floating">
-												<label class="focus-label">Email</label>
+												<label class="focus-label">Email Address</label>
 											</div>
 											<div class="form-group form-focus">
 												<input type="password" class="form-control floating">

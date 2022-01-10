@@ -12,7 +12,7 @@ class loginController extends CI_Controller {
     function login(){
         $page_data['message']="";
         if($this->input->post('phone')!="" &&  $this->input->post('password')!=""){
-            $query = $this->db->get_where('tbl_users', array('Phone' => $this->input->post('phone')));
+            $query = $this->db->get_where('tbl_users', array('Username' => $this->input->post('phone')));
             if ($query->num_rows() > 0){
                 $row = $query->row_array(); 
                 if(password_verify($this->input->post('password'), $row['Password'])){
@@ -24,25 +24,24 @@ class loginController extends CI_Controller {
                         if($row['Role_Id']=="2"){
                         $this->session->set_userdata('User_Id', $row['Id']);
                         //$this->session->set_userdata('Image', $row['Image']);
-                        $this->session->set_userdata('Name', $row['Name']);
-                        $this->session->set_userdata('Phone', $row['Phone']);
+                        /*$this->session->set_userdata('Name', $row['Name']);
+                        $this->session->set_userdata('Phone', $row['Phone']);*/
                         //$this->session->set_userdata('Contact_No', $row['Contact_No']);
                         $this->session->set_userdata('Role_Id', $row['Role_Id']);
                         redirect(base_url() . 'index.php?loginController/patient_dashboard', 'refresh');
                         }elseif ($row['Role_Id']=="3") {
                              $this->session->set_userdata('User_Id', $row['Id']);
                         //$this->session->set_userdata('Image', $row['Image']);
-                        $this->session->set_userdata('Name', $row['Name']);
-                        $this->session->set_userdata('Phone', $row['Phone']);
+                        /*$this->session->set_userdata('Name', $row['Name']);
+                        $this->session->set_userdata('Phone', $row['Phone']);*/
                         //$this->session->set_userdata('Contact_No', $row['Contact_No']);
                         $this->session->set_userdata('Role_Id', $row['Role_Id']);
                         redirect(base_url() . 'index.php?loginController/doctor_dashboard', 'refresh');
-                         
                         }else{
                              $this->session->set_userdata('User_Id', $row['Id']);
                         //$this->session->set_userdata('Image', $row['Image']);
-                        $this->session->set_userdata('Name', $row['Name']);
-                        $this->session->set_userdata('Phone', $row['Phone']);
+                        /*$this->session->set_userdata('Name', $row['Name']);
+                        $this->session->set_userdata('Phone', $row['Phone']);*/
                         //$this->session->set_userdata('Contact_No', $row['Contact_No']);
                         $this->session->set_userdata('Role_Id', $row['Role_Id']);
                         redirect(base_url() . 'index.php?loginController/admin_dashboard', 'refresh');

@@ -26,6 +26,7 @@ class WebsiteController extends CI_Controller {
             $this->load->view('web/pages/forgot_password', $page_data);
 
          }
+        
     }
     function PatientRegister(){
         $page_data['message']="";
@@ -61,6 +62,10 @@ class WebsiteController extends CI_Controller {
         }
         $this ->load -> view('web/acknowledgement',$page_data);
 
+    }
+    function makeappointment($id){
+       $page_data['docter_details'] =$this->db->get_where('tbl_users',array('Id'=>$id))->row();
+            $this->load->view('web/pages/make_appointment', $page_data);
     }
 }
 

@@ -23,7 +23,7 @@
 									 <?php echo form_open('?loginController/login' , array('class' =>'form-horizontal','id' => 'loginform'));?>
 										<div class="form-group form-focus">
 												<input type="text" class="form-control floating" name="phone" id="phone" onchange="remove_err('Phone_err')">
-												<label class="focus-label">Mobile Number<span class="text-danger">*</span></label>
+												<label class="focus-label">Email Address<span class="text-danger">*</span></label>
 												<span id="phone_err" class="text-danger"></span>
 											</div>
 											<div class="form-group form-focus">

@@ -174,7 +174,7 @@
                         <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
                       </div>
                       <div class="col-6">
-                        <a href="booking.html" class="btn book-btn">Book Now</a>
+                        <a href="#" class="btn book-btn"  onclick="loadpage('<?php echo base_url();?>index.php?websiteController/makeappointment/<?=$event['Id']?>')">Book Now</a>
                       </div>
                     </div>
                   </div>
